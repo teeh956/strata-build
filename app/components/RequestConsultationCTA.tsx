@@ -3,7 +3,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
-import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const spaceGrotesk = Space_Grotesk({
@@ -23,7 +22,6 @@ type RequestConsultationCTAProps = {
 };
 
 export default function RequestConsultationCTA({ className = "" }: RequestConsultationCTAProps) {
-  const router = useRouter();
   const prefersReducedMotion = useReducedMotion();
   const [isNavigating, setIsNavigating] = useState(false);
   const timeoutRef = useRef<number | null>(null);
@@ -37,9 +35,14 @@ export default function RequestConsultationCTA({ className = "" }: RequestConsul
   }, []);
 
   const handleRequestConsultation = () => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const destination = "/contact#consultation-form";
+
     if (prefersReducedMotion) {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      router.push("/contact#consultation-form");
+      window.location.assign(destination);
       return;
     }
 
@@ -47,8 +50,8 @@ export default function RequestConsultationCTA({ className = "" }: RequestConsul
     window.scrollTo({ top: 0, behavior: "smooth" });
 
     timeoutRef.current = window.setTimeout(() => {
-      router.push("/contact#consultation-form");
-    }, 260);
+      window.location.assign(destination);
+    }, 220);
   };
 
   return (
