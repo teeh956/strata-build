@@ -3,19 +3,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import BackButton from "./navigation/BackButton";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-ibm-plex-mono",
-});
 
 type ServicesProps = {
   onNext?: () => void;
@@ -157,7 +145,7 @@ export default function Services({ onNext, onPrevious }: ServicesProps) {
   return (
     <section
       id="services"
-      className={`min-h-screen w-full bg-[#EDEBE7] px-6 py-16 sm:px-8 lg:px-16 xl:px-24 ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}
+      className="min-h-screen w-full bg-[#EDEBE7] px-6 py-16 sm:px-8 lg:px-16 xl:px-24"
     >
       <div className="relative mx-auto flex min-h-[calc(100vh-8rem)] max-w-7xl flex-col">
         <div className="absolute left-4 top-4 z-10 sm:left-6 sm:top-6">

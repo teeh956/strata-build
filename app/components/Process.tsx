@@ -1,19 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import BackButton from "./navigation/BackButton";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-ibm-plex-mono",
-});
 
 type ProcessProps = {
   onNext?: () => void;
@@ -40,7 +28,7 @@ export default function Process({ onNext, onPrevious }: ProcessProps) {
 
   return (
     <section
-      className={`flex h-full w-full items-center justify-center bg-[#EDEBE7] px-6 py-8 sm:px-8 lg:px-16 xl:px-24 ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}
+      className="flex h-full w-full items-center justify-center bg-[#EDEBE7] px-6 py-8 sm:px-8 lg:px-16 xl:px-24"
     >
       <div className="relative w-full max-w-7xl rounded-[2rem] border border-[#1C1B19]/10 bg-[#F8F4EE] p-8 shadow-[0_20px_60px_rgba(28,27,25,0.08)] sm:p-10 lg:p-14">
         <div className="absolute left-4 top-4 z-10 sm:left-6 sm:top-6">

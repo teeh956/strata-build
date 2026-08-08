@@ -2,20 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
-import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import { useEffect } from "react";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["500", "700"],
-  variable: "--font-display",
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
-});
 
 export default function ContactPageClient() {
   const prefersReducedMotion = useReducedMotion();
@@ -40,7 +27,7 @@ export default function ContactPageClient() {
       initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className={`${spaceGrotesk.variable} ${plexMono.variable} min-h-screen bg-[#EDEBE7] text-[#1C1B19]`}
+      className="min-h-screen bg-[#EDEBE7] text-[#1C1B19]"
     >
       <div className="grid min-h-screen md:grid-cols-[380px_1fr]">
         <motion.aside

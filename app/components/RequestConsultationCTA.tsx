@@ -2,20 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import { useEffect, useRef, useState } from "react";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["500", "700"],
-  variable: "--font-space-grotesk",
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-ibm-plex-mono",
-});
 
 type RequestConsultationCTAProps = {
   className?: string;
@@ -59,7 +46,7 @@ export default function RequestConsultationCTA({ className = "" }: RequestConsul
       initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
       animate={isNavigating ? { opacity: 0, y: 12 } : { opacity: 1, y: 0 }}
       transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-      className={`flex min-h-screen w-full items-center justify-center bg-[#EDEBE7] px-6 py-24 sm:px-8 lg:px-16 xl:px-24 ${spaceGrotesk.variable} ${ibmPlexMono.variable} ${className}`}
+      className={`flex min-h-screen w-full items-center justify-center bg-[#EDEBE7] px-6 py-24 sm:px-8 lg:px-16 xl:px-24 ${className}`}
     >
       <div className="mx-auto flex max-w-[700px] flex-col items-center text-center">
         <p className="text-[0.72rem] uppercase tracking-[0.38em] text-[#EA5B0C]">

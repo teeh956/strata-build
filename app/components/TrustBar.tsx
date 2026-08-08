@@ -2,20 +2,8 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import { useEffect, useState } from "react";
 import BackButton from "./navigation/BackButton";
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-space-grotesk",
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-ibm-plex-mono",
-});
 
 type TrustBarProps = {
   onNext?: () => void;
@@ -30,7 +18,7 @@ const stats = [
 ];
 
 export default function TrustBar({ onNext, onPrevious }: TrustBarProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useReducedMotion() ?? false;
 
   return (
     <motion.section
@@ -41,7 +29,7 @@ export default function TrustBar({ onNext, onPrevious }: TrustBarProps) {
       className="min-h-screen w-full bg-[#EDEBE7] px-6 py-16 sm:px-8 lg:px-16 xl:px-24"
     >
       <div
-        className={`relative mx-auto flex min-h-[calc(100vh-8rem)] max-w-7xl flex-col overflow-hidden rounded-[2rem] border border-[#1C1B19]/10 bg-[#EDEBE7] shadow-[0_25px_80px_rgba(28,27,25,0.08)] lg:flex-row ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}
+        className="relative mx-auto flex min-h-[calc(100vh-8rem)] max-w-7xl flex-col overflow-hidden rounded-[2rem] border border-[#1C1B19]/10 bg-[#EDEBE7] shadow-[0_25px_80px_rgba(28,27,25,0.08)] lg:flex-row"
       >
         <div className="absolute left-4 top-4 z-10 sm:left-6 sm:top-6">
           <BackButton onClick={onPrevious} />
