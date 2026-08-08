@@ -43,21 +43,46 @@ export default function ContactPageClient() {
       className={`${spaceGrotesk.variable} ${plexMono.variable} min-h-screen bg-[#EDEBE7] text-[#1C1B19]`}
     >
       <div className="grid min-h-screen md:grid-cols-[380px_1fr]">
-        <aside className="flex flex-col justify-between bg-[#1C1B19] p-8 text-white md:p-12">
+        <motion.aside
+          initial={prefersReducedMotion ? false : { opacity: 0, x: -12 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col justify-between bg-[#1C1B19] p-8 text-white md:p-12"
+        >
           <div>
             <Link href="/" className="text-xs font-mono tracking-[0.35em] text-white/60 transition hover:text-white">
               &larr; STRATA BUILD
             </Link>
-            <h1 className="mt-8 text-4xl font-bold leading-tight md:text-5xl">
+            <motion.h1
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-8 text-4xl font-bold leading-tight md:text-5xl"
+            >
               Start your project
-            </h1>
-            <div className="mt-4 h-1 w-12 bg-[#EA5B0C]" />
-            <p className="mt-6 leading-relaxed text-white/70">
+            </motion.h1>
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, scaleX: 0.8 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.4, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-4 h-1 w-12 origin-left bg-[#EA5B0C]"
+            />
+            <motion.p
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-6 leading-relaxed text-white/70"
+            >
               Tell us about the build. A site engineer will follow up within one business day.
-            </p>
+            </motion.p>
           </div>
 
-          <dl className="mt-12 space-y-5 text-sm font-mono">
+          <motion.dl
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-12 space-y-5 text-sm font-mono"
+          >
             <div>
               <dt className="text-xs tracking-[0.3em] text-white/40">LOCATION</dt>
               <dd className="mt-1">Thika road, Kiambu County</dd>
@@ -70,17 +95,29 @@ export default function ContactPageClient() {
               <dt className="text-xs tracking-[0.3em] text-white/40">RESPONSE TIME</dt>
               <dd className="mt-1">Within 1 business day</dd>
             </div>
-          </dl>
-        </aside>
+          </motion.dl>
+        </motion.aside>
 
-        <section className="flex items-center p-8 md:p-16">
-          <form
+        <motion.section
+          initial={prefersReducedMotion ? false : { opacity: 0, x: 12 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="flex items-center p-8 md:p-16"
+        >
+          <motion.form
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             id="consultation-form"
             action="https://formspree.io/f/xwvgnlwd"
             method="POST"
             className="w-full max-w-xl space-y-6"
           >
-            <div>
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
+            >
               <label htmlFor="name" className="text-xs font-mono tracking-[0.3em] text-[#1C1B19]/50">
                 FULLNAME
               </label>
@@ -92,9 +129,13 @@ export default function ContactPageClient() {
                 className="mt-2 w-full border-b-2 border-[#1C1B19]/20 bg-transparent py-2 transition focus:border-[#EA5B0C] focus:outline-none"
                 placeholder="Jane Wanjiku"
               />
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+            >
               <label htmlFor="phone" className="text-xs font-mono tracking-[0.3em] text-[#1C1B19]">
                 PHONE NUMBER
               </label>
@@ -106,9 +147,13 @@ export default function ContactPageClient() {
                 className="mt-2 w-full border-b-2 border-[#1C1B19]/20 bg-transparent py-2 transition focus:border-[#EA5B0C] focus:outline-none"
                 placeholder="07xxxxxxxx"
               />
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            >
               <label htmlFor="projectType" className="text-xs font-mono tracking-[0.3em] text-[#1C1B19]/50">
                 PROJECT TYPE
               </label>
@@ -128,9 +173,13 @@ export default function ContactPageClient() {
                 <option value="consultation">Structural Consultation</option>
                 <option value="other">Other</option>
               </select>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
+            >
               <label htmlFor="message" className="text-xs font-mono tracking-[0.3em] text-[#1C1B19]/50">
                 PROJECT DETAILS
               </label>
@@ -142,16 +191,19 @@ export default function ContactPageClient() {
                 className="mt-2 w-full resize-none border-b-2 border-[#1C1B19]/20 bg-transparent py-2 transition focus:border-[#EA5B0C] focus:outline-none"
                 placeholder="location, approximate scope and timeline"
               />
-            </div>
+            </motion.div>
 
-            <button
+            <motion.button
               type="submit"
+              whileHover={prefersReducedMotion ? undefined : { y: -2, scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
               className="inline-flex items-center gap-2 rounded-md bg-[#EA5B0C] px-8 py-3 font-semibold text-white transition hover:bg-[#d14f09]"
             >
               Send Request
-            </button>
-          </form>
-        </section>
+            </motion.button>
+          </motion.form>
+        </motion.section>
       </div>
     </motion.main>
   );

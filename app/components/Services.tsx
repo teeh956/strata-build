@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import BackButton from "./navigation/BackButton";
 
@@ -95,6 +96,7 @@ const services = [
 ];
 
 export default function Services({ onNext, onPrevious }: ServicesProps) {
+  const shouldReduceMotion = useReducedMotion();
   const [activeIndex, setActiveIndex] = useState(0);
   const [transitioningIndex, setTransitioningIndex] = useState<number | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -161,7 +163,13 @@ export default function Services({ onNext, onPrevious }: ServicesProps) {
         <div className="absolute left-4 top-4 z-10 sm:left-6 sm:top-6">
           <BackButton onClick={onPrevious} />
         </div>
-        <header className="mx-auto max-w-3xl text-center">
+        <motion.header
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto max-w-3xl text-center"
+        >
           <p className="text-[0.72rem] uppercase tracking-[0.38em] text-[#EA5B0C]">
             OUR SERVICES
           </p>
@@ -175,9 +183,15 @@ export default function Services({ onNext, onPrevious }: ServicesProps) {
             construction solutions that meet the highest standards of quality, safety and
             engineering excellence.
           </p>
-        </header>
+        </motion.header>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+        >
           {services.map((service, index) => {
             const isActive = activeIndex === index;
             const isEnteringCard = isTransitioning && index === activeIndex;
@@ -193,20 +207,31 @@ export default function Services({ onNext, onPrevious }: ServicesProps) {
                   : "opacity-0 scale-[0.97]";
 
             return (
-              <article
+              <motion.article
                 key={service.title}
                 tabIndex={0}
                 role="button"
                 aria-pressed={isActive}
                 onClick={() => handleSelect(index)}
                 onKeyDown={(event) => handleKeyDown(event, index)}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.55, delay: shouldReduceMotion ? 0 : index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={shouldReduceMotion ? undefined : { y: -4, scale: 1.005 }}
                 className={`group flex h-full flex-col overflow-hidden rounded-[1.6rem] border bg-[#F7F4EE] shadow-[0_18px_45px_rgba(28,27,25,0.08)] transition-[box-shadow,border-color] duration-300 ease-out hover:shadow-[0_22px_56px_rgba(28,27,25,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EA5B0C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#EDEBE7] ${
                   isActive
                     ? "scale-[1.02] border-[#EA5B0C] shadow-[0_24px_60px_rgba(28,27,25,0.16)]"
                     : "border-[#1C1B19]/10"
                 }`}
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <motion.div
+                  initial={shouldReduceMotion ? false : { opacity: 0, scale: 1.02 }}
+                  whileInView={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: shouldReduceMotion ? 0 : 0.7, delay: shouldReduceMotion ? 0 : index * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative aspect-[4/3] overflow-hidden"
+                >
                   <div className="absolute inset-0">
                     <Image
                       src={service.image}
@@ -223,7 +248,7 @@ export default function Services({ onNext, onPrevious }: ServicesProps) {
                   </div>
 
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1C1B19]/50 via-transparent to-[#1C1B19]/10" />
-                </div>
+                </motion.div>
 
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   <h3 className="text-xl font-semibold text-[#1C1B19]">{service.title}</h3>
@@ -246,13 +271,16 @@ export default function Services({ onNext, onPrevious }: ServicesProps) {
                     </button>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             );
           })}
-        </div>
+        </motion.div>
 
         <div className="mt-12 flex justify-center">
-          <button
+          <motion.button
+            whileHover={shouldReduceMotion ? undefined : { y: -2, scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             type="button"
             onClick={onNext}
             className="group inline-flex items-center gap-3 rounded-full border border-[#EA5B0C]/20 bg-[#EA5B0C] px-7 py-3.5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(234,91,12,0.24)]"
@@ -261,7 +289,7 @@ export default function Services({ onNext, onPrevious }: ServicesProps) {
             <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>

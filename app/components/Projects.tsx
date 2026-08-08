@@ -1,3 +1,6 @@
+"use client";
+
+import { motion, useReducedMotion } from "framer-motion";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
 import BackButton from "./navigation/BackButton";
 
@@ -33,6 +36,8 @@ const projects = [
 ];
 
 export default function Projects({ onNext, onPrevious }: ProjectsProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       className={`flex h-full w-full items-center justify-center bg-[#F7F4EE] px-6 py-8 sm:px-8 lg:px-16 xl:px-24 ${spaceGrotesk.variable} ${ibmPlexMono.variable}`}
@@ -41,7 +46,13 @@ export default function Projects({ onNext, onPrevious }: ProjectsProps) {
         <div className="absolute left-4 top-4 z-10 sm:left-6 sm:top-6">
           <BackButton onClick={onPrevious} />
         </div>
-        <div className="max-w-3xl">
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+          whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: shouldReduceMotion ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl"
+        >
           <p className="text-[0.72rem] uppercase tracking-[0.38em] text-[#EA5B0C]">
             RECENT PROJECTS
           </p>
@@ -51,20 +62,37 @@ export default function Projects({ onNext, onPrevious }: ProjectsProps) {
           <p className="mt-5 text-base leading-8 text-[#1C1B19]/75 sm:text-lg">
             From private residences to complex commercial infrastructure, our projects reflect the same commitment to structural integrity and precision execution.
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {projects.map((project) => (
-            <div key={project.title} className="rounded-[1.4rem] border border-[#1C1B19]/10 bg-[#F8F4EE] p-6">
-              <div className="h-28 rounded-[1rem] bg-gradient-to-br from-[#EA5B0C]/20 via-[#EA5B0C]/5 to-transparent" />
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.55, delay: shouldReduceMotion ? 0 : index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={shouldReduceMotion ? undefined : { y: -3, scale: 1.005 }}
+              className="rounded-[1.4rem] border border-[#1C1B19]/10 bg-[#F8F4EE] p-6"
+            >
+              <motion.div
+                initial={shouldReduceMotion ? false : { opacity: 0, scale: 1.02 }}
+                whileInView={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: shouldReduceMotion ? 0 : 0.7, delay: shouldReduceMotion ? 0 : index * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                className="h-28 rounded-[1rem] bg-gradient-to-br from-[#EA5B0C]/20 via-[#EA5B0C]/5 to-transparent"
+              />
               <h3 className="mt-5 text-xl font-semibold text-[#1C1B19]">{project.title}</h3>
               <p className="mt-3 text-sm leading-7 text-[#1C1B19]/70">{project.detail}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         <div className="mt-10 flex justify-start">
-          <button
+          <motion.button
+            whileHover={shouldReduceMotion ? undefined : { y: -2, scale: 1.01 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             type="button"
             onClick={onNext}
             className="group inline-flex items-center gap-3 rounded-full border border-[#1C1B19]/10 bg-[#EA5B0C] px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(234,91,12,0.24)]"
@@ -73,7 +101,7 @@ export default function Projects({ onNext, onPrevious }: ProjectsProps) {
             <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>
